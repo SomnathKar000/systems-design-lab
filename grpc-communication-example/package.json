@@ -2,6 +2,7 @@
   "name": "grpc-communication-example",
   "version": "1.0.0",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "server": "node ./server/index.js",
     "client": "node ./client/index.js"
@@ -11,6 +12,8 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@grpc/grpc-js": "^1.14.3",
+    "@grpc/proto-loader": "^0.8.0",
     "body-parser": "^2.2.2",
     "express": "^5.2.1"
   }
