@@ -3,6 +3,9 @@ syntax = "proto3"
 service CustomerService {
     rpc GetAll (Empty) return (CustomerList) {}
     rpc Get (CustomerRequestId) return (Customer) {}
+    rpc Insert (Customer) return (Customer) {}
+    rpc Update (Customer) return (Customer) {}
+    rpc Remove (CustomerREquestId) return (Empty) {}
 }
 
 message Empty {}
