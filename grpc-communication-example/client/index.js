@@ -12,6 +12,7 @@ const PORT = process.env.PORT || 4000;
 app.get("/health", (_, res) =>
   res.json({ success: true, message: "Health is ok" })
 );
+// TODO: Expose rest call with gRPC
 
 app.get("/", (req, res) => {
   client.GetAll(null, (err, data) => {
@@ -27,8 +28,6 @@ app.get("/", (req, res) => {
     });
   });
 });
-
-// TODO: Expose rest call with gRPC
 
 app.listen(PORT, () => {
   console.log("App started successfully on port: ", PORT);
