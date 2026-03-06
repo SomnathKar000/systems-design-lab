@@ -31,13 +31,13 @@ const customersProto = grpc.loadPackageDefinition(packageDefinition);
 const server = new grpc.Server();
 
 server.addService(customersProto.CustomerService.service, {
-  getAll: (call, callBack) => {
+  GetAll: (call, callBack) => {
     callBack(null, { customers });
   },
-  get: (call, callBack) => {},
-  insert: (call, callBack) => {},
-  update: (call, callBack) => {},
-  remove: (call, callBack) => {},
+  Get: (call, callBack) => {},
+  Insert: (call, callBack) => {},
+  Update: (call, callBack) => {},
+  Remove: (call, callBack) => {},
 });
 
 server.bindAsync(
