@@ -11,12 +11,29 @@ const packageDefinition = protoLoader.loadSync(PROTO_PATH, {
   enums: String,
 });
 
+const customers = [
+  {
+    id: "1",
+    name: "Test 1",
+    age: 23,
+    address: "Kolkata",
+  },
+  {
+    id: "2",
+    name: "Test 2",
+    age: 24,
+    address: "Delhi",
+  },
+];
+
 const customersProto = grpc.loadPackageDefinition(packageDefinition);
 
 const server = new grpc.Server();
 
 server.addService(customersProto.CustomerService.service, {
-  getAll: (call, callBack) => {},
+  getAll: (call, callBack) => {
+    callBack(null, { customers });
+  },
   get: (call, callBack) => {},
   insert: (call, callBack) => {},
   update: (call, callBack) => {},
