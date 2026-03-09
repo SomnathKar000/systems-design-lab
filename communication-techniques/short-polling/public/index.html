@@ -8,5 +8,18 @@
 </head>
 <body>
     <h1>Hey</h1>
+    <p>This is my first web page.</p>
+    <p id="data-id"> this is my data: </p>
 </body>
+<script>
+    function fetchData() {
+        fetch('/getData')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('data-id').textContent = `This is my data: ${data.data}`;
+            })
+            .catch(error => console.error('Error fetching data:', error));
+    }
+    setInterval(fetchData, 5000); 
+</script>
 </html>

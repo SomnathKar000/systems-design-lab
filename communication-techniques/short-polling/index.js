@@ -27,7 +27,7 @@ app.get("/getData", (_, res) => {
 });
 
 app.post("/updateData", (req, res) => {
-    let newData = res.body?.data;
+    let newData = req.body?.data;
     data = newData;
 
     res.json({
