@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My First Web Page</title>
-<head>
-
 </head>
+
 <body>
     <h1>Hey</h1>
     <p>This is my first web page.</p>
     <p id="data-id"> this is my data: </p>
 </body>
+
 <script>
     function fetchData() {
         fetch('/getData')
             .then(response => response.json())
-            .then(data => {
-                document.getElementById('data-id').textContent = `This is my data: ${data.data}`;
+            .then(({ data }) => {
+                document.getElementById('data-id').textContent = `This is my data: ${data}`;
             })
             .catch(error => console.error('Error fetching data:', error));
     }
