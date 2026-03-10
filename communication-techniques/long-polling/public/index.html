@@ -11,7 +11,6 @@
     <h1>Hey</h1>
     <p>This is my first web page.</p>
     <p id="data-id"> This is my data: </p>
-    <p id="update-id">Updated: ff</p>
 </body>
 
 <script>
@@ -21,7 +20,7 @@
             const data = await response.json()
 
             document.getElementById("data-id").textContent = `This is my data: ${data.data}`
-            document.getElementById('update-id').textContent=`Updated: ${data.updated}` 
+             
             fetchData(data.data)
         } catch (error) {
             console.log('Got an error', error)

@@ -20,7 +20,7 @@ app.get('/health', (_, res) => {
 app.get('/getData', (req, res) => {
     const preData = req.query.last_data
     if (preData !== data) {
-        return res.json({ success: true, message: "Data fetched successfully", data, updated: true })
+        return res.json({ success: true, message: "Data fetched successfully", data })
     }
     else{
         waitingClientList.push(res)
@@ -32,7 +32,7 @@ app.post('/updateData', (req, res) => {
     data = newData;
     while(waitingClientList.length){
         const poppedReq= waitingClientList.pop()
-        poppedReq.json({ success: true, message: "Data fetched successfully", data, updated: true })
+        poppedReq.json({ success: true, message: "Data fetched successfully", data})
     }
     res.json({
         success: true,
