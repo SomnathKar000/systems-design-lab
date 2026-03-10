@@ -15,22 +15,19 @@
 </body>
 
 <script>
-    let currentData = null
-    async function fetchData() {
+    async function fetchData(lastData) {
         try {
-            const response = await fetch(`/getData?last_data=${currentData}`);
+            const response = await fetch(`/getData?last_data=${lastData}`);
             const data = await response.json()
 
-            currentData = data.data
-
-            document.getElementById("data-id").textContent = `This is my data: ${currentData}`
+            document.getElementById("data-id").textContent = `This is my data: ${data.data}`
             document.getElementById('update-id').textContent=`Updated: ${data.updated}` 
-            fetchData()
+            fetchData(data.data)
         } catch (error) {
             console.log('Got an error', error)
         }
     }
-    fetchData()
+    fetchData(null)
 </script>
 
 </html>
