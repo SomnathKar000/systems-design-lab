@@ -1,0 +1,17 @@
+{
+  "name": "long-polling",
+  "version": "1.0.0",
+  "description": "Long polling is a web development technique for near real-time, bidirectional communication where the client sends an HTTP request and the server holds it open, only responding when new data is available or a timeout occurs.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.2.1",
+    "nodemon": "^3.1.14"
+  }
+}
