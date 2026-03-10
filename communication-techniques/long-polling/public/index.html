@@ -10,11 +10,25 @@
 <body>
     <h1>Hey</h1>
     <p>This is my first web page.</p>
-    <p id="data-id"> this is my data: </p>
+    <p id="data-id"> This is my data: </p>
+    <p id="update-id">Updated:</p>
 </body>
 
 <script>
-    
+    let currentData = null
+    async function fetchData() {
+        try {
+            const response = await fetch(`/getData?last_data=${currentData}`);
+            const data = await response.json()
+
+            currentData = data.data
+
+            document.getElementById("data-id").textContent = `This is my data: ${currentData}`
+            document.getElementById('update-id').textContent`Updated: ${data.updated}`
+        } catch (error) {
+            console.log('Got an error', error)
+        }
+    }
 </script>
 
 </html>
