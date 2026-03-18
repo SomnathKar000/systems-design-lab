@@ -13,7 +13,7 @@ app.use(express.static(path.join(import.meta.dirname, "public")));
 
 server.on("upgrade", (req, socket, head) => {
     wss.handleUpgrade(req, socket, head, (ws) => {
-        ws.emit("connection", ws, req);
+        wss.emit("connection", ws, req);
     });
 });
 

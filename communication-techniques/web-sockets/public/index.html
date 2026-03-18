@@ -249,7 +249,6 @@
         <header>
             <div class="status-dot"></div>
             <h1>WS Chat</h1>
-            <span class="tag">ws://localhost:8080</span>
         </header>
 
         <div id="chat-box">
@@ -269,9 +268,7 @@
 
         const ws = new WebSocket('ws://localhost:4000')
 
-        ws.onopen = () => {
-            ws.send("Hello")
-        }
+        
         ws.onmessage = (event) => {
             appendMsg(event.data, 'recv', 'server')
         }
