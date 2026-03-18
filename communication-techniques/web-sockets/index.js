@@ -1,21 +1,44 @@
-import express from "express"
-import path from "path"
-import {createServer} from "node:http"
+import express from "express";
+import path from "path";
+import { createServer } from "node:http";
+import { WebSocketServer } from "ws";
 
-const app = express()
-const server = createServer(app)
+const app = express();
+const server = createServer(app);
+const wss = new WebSocketServer({ noServer: true });
 
-const PORT= process.env.PORT||4000
+const PORT = process.env.PORT || 4000;
 
-app.use(express.static(path.join(import.meta.dirname,"public")))
+app.use(express.static(path.join(import.meta.dirname, "public")));
 
-app.get('/health',(_,res)=>{
-    res.json({
-        success:true,
-        message:"Health is ok"
+server.on("upgrade", (req, socket, head) => {
+    wss.handleUpgrade(req, socket, head, (ws) => {
+        ws.emit("connection", ws, req);
+    });
+});
+
+wss.on('connection', (ws, req) => {
+    console.log('client connected')
+
+    ws.on('message', (message) => {
+        console.log('Server received an message: ', message)
+        ws.send('Server received ', message)
     })
+
+    ws.on('close', () => {
+        console.log('Client disconnected')
+    })
+
+    ws.send("Welcome to the WebSocket server")
 })
 
-server.listen(PORT,()=>{
-    console.log("Server is listening on port: ",PORT)
-})
+app.get("/health", (_, res) => {
+    res.json({
+        success: true,
+        message: "Health is ok",
+    });
+});
+
+server.listen(PORT, () => {
+    console.log("Server is listening on port: ", PORT);
+});
