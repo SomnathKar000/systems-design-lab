@@ -23,7 +23,7 @@ wss.on('connection', (ws, req) => {
     ws.on('message', (message) => {
         const data= message.toString()
         console.log('Server received an message: ', data)
-        ws.send('Server received '+ data)
+        ws.send(`Server received: ${data}`)
     })
 
     ws.on('close', () => {
