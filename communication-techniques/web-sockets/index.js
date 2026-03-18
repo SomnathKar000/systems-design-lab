@@ -21,8 +21,9 @@ wss.on('connection', (ws, req) => {
     console.log('client connected')
 
     ws.on('message', (message) => {
-        console.log('Server received an message: ', message)
-        ws.send('Server received ', message)
+        const data= message.toString()
+        console.log('Server received an message: ', data)
+        ws.send('Server received '+ data)
     })
 
     ws.on('close', () => {
